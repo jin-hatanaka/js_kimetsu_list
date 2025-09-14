@@ -6,12 +6,12 @@ const oni = document.getElementById('oni');
 const div = document.getElementById('div');
 const loading = document.getElementById('loading');
 
-const fetchCharacter = async (API_URL) => {
+const fetchCharacter = async (value) => {
   // ロード中表示
   loading.style.display = 'block';
 
   try {
-    const res = await fetch(API_URL);
+    const res = await fetch(`https://ihatov08.github.io/kimetsu_api/api/${value}.json`);
     const characters = await res.json();
 
     // 既存の内容をクリア
@@ -52,21 +52,21 @@ const fetchCharacter = async (API_URL) => {
 };
 
 // イベントリスナー
-all.addEventListener('change', () => {
-  fetchCharacter('https://ihatov08.github.io/kimetsu_api/api/all.json');
+all.addEventListener('change', (event) => {
+  fetchCharacter(event.target.value);
 });
 
-kisatsutai.addEventListener('change', () => {
-  fetchCharacter('https://ihatov08.github.io/kimetsu_api/api/kisatsutai.json');
+kisatsutai.addEventListener('change', (event) => {
+  fetchCharacter(event.target.value);
 });
 
-hashira.addEventListener('change', () => {
-  fetchCharacter('https://ihatov08.github.io/kimetsu_api/api/hashira.json');
+hashira.addEventListener('change', (event) => {
+  fetchCharacter(event.target.value);
 });
 
-oni.addEventListener('change', () => {
-  fetchCharacter('https://ihatov08.github.io/kimetsu_api/api/oni.json');
+oni.addEventListener('change', (event) => {
+  fetchCharacter(event.target.value);
 });
 
 // 初期表示（全キャラクター）
-fetchCharacter('https://ihatov08.github.io/kimetsu_api/api/all.json');
+fetchCharacter('all');
