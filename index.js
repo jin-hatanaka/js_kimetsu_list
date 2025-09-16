@@ -5,6 +5,7 @@ const hashira = document.getElementById('hashira');
 const oni = document.getElementById('oni');
 const div = document.getElementById('div');
 const loading = document.getElementById('loading');
+const radioButtons = document.querySelectorAll('input[name="character"]');
 
 const fetchCharacter = async (value) => {
   // ロード中表示
@@ -52,20 +53,10 @@ const fetchCharacter = async (value) => {
 };
 
 // イベントリスナー
-all.addEventListener('change', (event) => {
-  fetchCharacter(event.target.value);
-});
-
-kisatsutai.addEventListener('change', (event) => {
-  fetchCharacter(event.target.value);
-});
-
-hashira.addEventListener('change', (event) => {
-  fetchCharacter(event.target.value);
-});
-
-oni.addEventListener('change', (event) => {
-  fetchCharacter(event.target.value);
+radioButtons.forEach((radio) => {
+  radio.addEventListener('change', (event) => {
+    fetchCharacter(event.target.value);
+  });
 });
 
 // 初期表示（全キャラクター）
